@@ -22,7 +22,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
-      <div className="max-w-[85rem] w-full backdrop-blur-2xl bg-white/5 border border-white/10 rounded-2xl shadow-2xl shadow-black/20 px-6 py-3 transition-all duration-300 hover:bg-white/10 hover:shadow-neon-purple/10 hover:border-white/20">
+      <div className="max-w-[85rem] w-full backdrop-blur-2xl bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-2xl shadow-2xl shadow-black/5 dark:shadow-black/20 px-6 py-3 transition-all duration-300 hover:bg-white/50 dark:hover:bg-white/10 hover:shadow-neon-purple/10 hover:border-black/10 dark:hover:border-white/20">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-12">
             <Link href="/dashboard" className="text-2xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent hover:scale-105 transition-transform">
@@ -36,8 +36,8 @@ export default function Navbar() {
                   className={`
                     px-4 py-2 rounded-xl transition-all duration-300 flex items-center gap-2 font-medium text-sm
                     ${pathname === item.path
-                      ? 'bg-gradient-to-r from-neon-purple/20 to-neon-pink/20 text-white border border-white/10 shadow-lg shadow-purple-500/10'
-                      : 'text-gray-400 hover:text-white hover:bg-white/5'
+                      ? 'bg-gradient-to-r from-neon-purple/20 to-neon-pink/20 text-indigo-900 dark:text-white border border-indigo-500/20 dark:border-white/10 shadow-lg shadow-purple-500/10'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'
                     }
                   `}
                 >

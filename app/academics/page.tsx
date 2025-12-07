@@ -134,24 +134,24 @@ export default function AcademicsPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-2">Academics 📚</h1>
-      <p className="text-gray-300 mb-8">Track your marks and assignments</p>
+      <h1 className="text-4xl font-bold mb-2 text-slate-900 dark:text-white">Academics 📚</h1>
+      <p className="text-slate-600 dark:text-gray-300 mb-8">Track your marks and assignments</p>
 
       <div className="flex space-x-4 mb-8">
         <button
           onClick={() => setActiveTab('marks')}
-          className={`px-6 py-3 rounded-xl transition-all ${activeTab === 'marks'
-              ? 'bg-gradient-to-r from-neon-purple to-neon-pink text-white shadow-lg'
-              : 'bg-white/10 text-gray-300 hover:bg-white/20'
+          className={`px-6 py-3 rounded-xl transition-all font-medium ${activeTab === 'marks'
+            ? 'bg-gradient-to-r from-neon-purple to-neon-pink text-white shadow-lg'
+            : 'bg-white/40 dark:bg-white/10 text-slate-600 dark:text-gray-300 hover:bg-white/60 dark:hover:bg-white/20'
             }`}
         >
           📊 Current Marks
         </button>
         <button
           onClick={() => setActiveTab('assignments')}
-          className={`px-6 py-3 rounded-xl transition-all ${activeTab === 'assignments'
-              ? 'bg-gradient-to-r from-neon-purple to-neon-pink text-white shadow-lg'
-              : 'bg-white/10 text-gray-300 hover:bg-white/20'
+          className={`px-6 py-3 rounded-xl transition-all font-medium ${activeTab === 'assignments'
+            ? 'bg-gradient-to-r from-neon-purple to-neon-pink text-white shadow-lg'
+            : 'bg-white/40 dark:bg-white/10 text-slate-600 dark:text-gray-300 hover:bg-white/20'
             }`}
         >
           📝 Assignments
@@ -168,47 +168,47 @@ export default function AcademicsPage() {
 
           {showMarkForm && (
             <GlassCard className="mb-6">
-              <h2 className="text-xl font-bold mb-4">Add Marks</h2>
+              <h2 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">Add Marks</h2>
               <form onSubmit={handleMarkSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Subject</label>
+                    <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Subject</label>
                     <input
                       type="text"
                       value={markForm.subjectName}
                       onChange={(e) => setMarkForm({ ...markForm, subjectName: e.target.value })}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                      className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Semester</label>
+                    <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Semester</label>
                     <input
                       type="text"
                       value={markForm.semester}
                       onChange={(e) => setMarkForm({ ...markForm, semester: e.target.value })}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                      className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Internal Marks</label>
+                    <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Internal Marks</label>
                     <input
                       type="number"
                       value={markForm.internalMarks}
                       onChange={(e) => setMarkForm({ ...markForm, internalMarks: parseInt(e.target.value) })}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                      className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">External Marks</label>
+                    <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">External Marks</label>
                     <input
                       type="number"
                       value={markForm.externalMarks}
                       onChange={(e) => setMarkForm({ ...markForm, externalMarks: parseInt(e.target.value) })}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                      className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
                     />
                   </div>
                 </div>
@@ -223,19 +223,19 @@ export default function AcademicsPage() {
             {marks.map((mark) => (
               <GlassCard key={mark.id}>
                 <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-semibold">{mark.subjectName}</h3>
-                  <span className="px-2 py-1 text-xs rounded-lg bg-neon-cyan/30 text-neon-cyan">
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{mark.subjectName}</h3>
+                  <span className="px-2 py-1 text-xs rounded-lg bg-cyan-600/10 dark:bg-neon-cyan/30 text-cyan-700 dark:text-neon-cyan font-medium">
                     {mark.semester}
                   </span>
                 </div>
-                <div className="space-y-2 text-sm">
+                <div className="space-y-2 text-sm text-slate-600 dark:text-gray-300">
                   <p>Internal: {mark.internalMarks}</p>
                   <p>External: {mark.externalMarks}</p>
-                  <p className="text-lg font-bold text-neon-purple">Total: {mark.total}</p>
+                  <p className="text-lg font-bold text-purple-600 dark:text-neon-purple">Total: {mark.total}</p>
                 </div>
                 <button
                   onClick={() => handleDeleteMark(mark.id)}
-                  className="mt-4 text-red-400 hover:text-red-300 text-sm"
+                  className="mt-4 text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 text-sm font-medium transition-colors"
                 >
                   Delete
                 </button>
@@ -253,59 +253,59 @@ export default function AcademicsPage() {
 
           {showAssignmentForm && (
             <GlassCard className="mb-6">
-              <h2 className="text-xl font-bold mb-4">Add Assignment</h2>
+              <h2 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">Add Assignment</h2>
               <form onSubmit={handleAssignmentSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Subject</label>
+                    <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Subject</label>
                     <input
                       type="text"
                       value={assignmentForm.subject}
                       onChange={(e) => setAssignmentForm({ ...assignmentForm, subject: e.target.value })}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                      className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Due Date</label>
+                    <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Due Date</label>
                     <input
                       type="date"
                       value={assignmentForm.dueDate}
                       onChange={(e) => setAssignmentForm({ ...assignmentForm, dueDate: e.target.value })}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                      className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Title</label>
+                  <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Title</label>
                   <input
                     type="text"
                     value={assignmentForm.title}
                     onChange={(e) => setAssignmentForm({ ...assignmentForm, title: e.target.value })}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                    className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Notes</label>
+                  <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Notes</label>
                   <textarea
                     value={assignmentForm.notes}
                     onChange={(e) => setAssignmentForm({ ...assignmentForm, notes: e.target.value })}
                     rows={3}
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                    className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Status</label>
+                  <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Status</label>
                   <select
                     value={assignmentForm.status}
                     onChange={(e) => setAssignmentForm({ ...assignmentForm, status: e.target.value as any })}
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                    className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
                   >
-                    <option value="Pending">Pending</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Done">Done</option>
+                    <option value="Pending" className="text-black">Pending</option>
+                    <option value="In Progress" className="text-black">In Progress</option>
+                    <option value="Done" className="text-black">Done</option>
                   </select>
                 </div>
                 <PrimaryButton type="submit" className="w-full">
@@ -319,19 +319,19 @@ export default function AcademicsPage() {
             {assignments.map((assignment) => (
               <GlassCard key={assignment.id}>
                 <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-semibold">{assignment.title}</h3>
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{assignment.title}</h3>
                   <span
-                    className={`px-2 py-1 text-xs rounded-lg ${assignment.status === 'Done'
-                        ? 'bg-green-500/30 text-green-300'
-                        : assignment.status === 'In Progress'
-                          ? 'bg-yellow-500/30 text-yellow-300'
-                          : 'bg-red-500/30 text-red-300'
+                    className={`px-2 py-1 text-xs rounded-lg font-medium ${assignment.status === 'Done'
+                      ? 'bg-green-500/20 text-green-700 dark:bg-green-500/30 dark:text-green-300'
+                      : assignment.status === 'In Progress'
+                        ? 'bg-yellow-500/20 text-yellow-700 dark:bg-yellow-500/30 dark:text-yellow-300'
+                        : 'bg-red-500/20 text-red-700 dark:bg-red-500/30 dark:text-red-300'
                       }`}
                   >
                     {assignment.status}
                   </span>
                 </div>
-                <div className="space-y-2 text-sm text-gray-300 mb-4">
+                <div className="space-y-2 text-sm text-slate-600 dark:text-gray-300 mb-4">
                   <p>📚 {assignment.subject}</p>
                   <p>📅 Due: {new Date(assignment.dueDate).toLocaleDateString()}</p>
                   {assignment.notes && <p>📝 {assignment.notes}</p>}
@@ -342,7 +342,7 @@ export default function AcademicsPage() {
                   </PrimaryButton>
                   <button
                     onClick={() => handleDeleteAssignment(assignment.id)}
-                    className="px-4 py-2 rounded-xl bg-red-500/20 text-red-300 hover:bg-red-500/30 transition-all"
+                    className="px-4 py-2 rounded-xl bg-red-500/10 dark:bg-red-500/20 text-red-600 dark:text-red-300 hover:bg-red-500/20 dark:hover:bg-red-500/30 transition-all font-medium"
                   >
                     Delete
                   </button>

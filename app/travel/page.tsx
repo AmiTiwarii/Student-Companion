@@ -138,27 +138,27 @@ export default function TravelPage() {
       <p className="text-gray-300 mb-8">Search flights and hotels</p>
 
       <GlassCard className="mb-6">
-        <h2 className="text-2xl font-bold mb-4">Search Flights</h2>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Search Flights</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <input
             type="text"
             value={from}
             onChange={(e) => setFrom(e.target.value)}
             placeholder="From (e.g., Delhi)"
-            className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+            className="px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none placeholder:text-slate-500 dark:placeholder:text-gray-400"
           />
           <input
             type="text"
             value={to}
             onChange={(e) => setTo(e.target.value)}
             placeholder="To (e.g., Mumbai)"
-            className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+            className="px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none placeholder:text-slate-500 dark:placeholder:text-gray-400"
           />
           <input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+            className="px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
           />
         </div>
         <PrimaryButton onClick={handleSearch} disabled={isSearching} className="w-full">
@@ -168,11 +168,11 @@ export default function TravelPage() {
 
       {showFlights && (
         <>
-          <h2 className="text-2xl font-bold mb-4">Available Flights</h2>
+          <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Available Flights</h2>
           {isSearching ? (
-            <div className="text-center py-8">Searching for best flights...</div>
+            <div className="text-center py-8 text-slate-600 dark:text-gray-400">Searching for best flights...</div>
           ) : flights.length === 0 ? (
-            <div className="text-center py-8 text-gray-400">No flights found. Try different cities or dates.</div>
+            <div className="text-center py-8 text-slate-500 dark:text-gray-400">No flights found. Try different cities or dates.</div>
           ) : (
             <div className="space-y-4 mb-6">
               {flights.map((flight) => (
@@ -182,34 +182,34 @@ export default function TravelPage() {
                       <div className="flex items-center gap-3 mb-2">
                         <span className="text-2xl">✈️</span>
                         <div>
-                          <h3 className="text-xl font-semibold">{flight.airline}</h3>
-                          <p className="text-sm text-gray-400">{flight.flightNumber}</p>
+                          <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{flight.airline}</h3>
+                          <p className="text-sm text-slate-600 dark:text-gray-400">{flight.flightNumber}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-4 text-sm">
                         <div>
-                          <p className="text-gray-400">From</p>
-                          <p className="font-semibold">{flight.from}</p>
-                          <p className="text-neon-cyan">{flight.departure}</p>
+                          <p className="text-slate-500 dark:text-gray-400">From</p>
+                          <p className="font-semibold text-slate-900 dark:text-white">{flight.from}</p>
+                          <p className="text-indigo-600 dark:text-neon-cyan">{flight.departure}</p>
                         </div>
-                        <div className="text-gray-400">→ {flight.duration} →</div>
+                        <div className="text-slate-400 dark:text-gray-400">→ {flight.duration} →</div>
                         <div>
-                          <p className="text-gray-400">To</p>
-                          <p className="font-semibold">{flight.to}</p>
-                          <p className="text-neon-cyan">{flight.arrival}</p>
+                          <p className="text-slate-500 dark:text-gray-400">To</p>
+                          <p className="font-semibold text-slate-900 dark:text-white">{flight.to}</p>
+                          <p className="text-indigo-600 dark:text-neon-cyan">{flight.arrival}</p>
                         </div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-2xl font-bold text-green-400">₹{flight.price}</p>
-                      <p className="text-xs text-gray-400 mb-2">{flight.seats} seats left</p>
+                      <p className="text-2xl font-bold text-green-600 dark:text-green-400">₹{flight.price}</p>
+                      <p className="text-xs text-slate-500 dark:text-gray-400 mb-2">{flight.seats} seats left</p>
                       <div className="flex gap-2">
                         <PrimaryButton onClick={() => handlePayment(flight.price, `Flight ${flight.flightNumber}`)}>
                           Book (₹{flight.price})
                         </PrimaryButton>
                         <button
                           onClick={() => window.open('https://www.goindigo.in/', '_blank')}
-                          className="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition-all text-xs"
+                          className="px-3 py-2 rounded-xl bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 transition-all text-xs text-slate-900 dark:text-white"
                         >
                           View on Site
                         </button>
@@ -224,7 +224,7 @@ export default function TravelPage() {
       )}
 
       <GlassCard className="mb-6">
-        <h2 className="text-2xl font-bold mb-4">Search Hotels {to ? `in ${to}` : ''}</h2>
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Search Hotels {to ? `in ${to}` : ''}</h2>
         <PrimaryButton onClick={fetchHotels} disabled={isLoadingHotels} className="w-full">
           {isLoadingHotels ? 'Loading Hotels...' : 'Show Available Hotels'}
         </PrimaryButton>
@@ -232,22 +232,22 @@ export default function TravelPage() {
 
       {showHotels && (
         <>
-          <h2 className="text-2xl font-bold mb-4">Available Hotels</h2>
+          <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Available Hotels</h2>
           {isLoadingHotels ? (
-            <div className="text-center py-8">Finding best hotels...</div>
+            <div className="text-center py-8 text-slate-600 dark:text-gray-400">Finding best hotels...</div>
           ) : hotels.length === 0 ? (
-            <div className="text-center py-8 text-gray-400">No hotels found. Try a different city.</div>
+            <div className="text-center py-8 text-slate-500 dark:text-gray-400">No hotels found. Try a different city.</div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               {hotels.map((hotel) => (
                 <GlassCard key={hotel.id}>
                   <div className="flex justify-between items-start mb-3">
                     <div>
-                      <h3 className="text-xl font-semibold">{hotel.name}</h3>
-                      <p className="text-sm text-gray-400">📍 {hotel.location}</p>
-                      <p className="text-sm text-yellow-400">⭐ {hotel.rating ? hotel.rating.toFixed(1) : 'N/A'}</p>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{hotel.name}</h3>
+                      <p className="text-sm text-slate-600 dark:text-gray-400">📍 {hotel.location}</p>
+                      <p className="text-sm text-yellow-600 dark:text-yellow-400">⭐ {hotel.rating ? hotel.rating.toFixed(1) : 'N/A'}</p>
                     </div>
-                    <p className="text-xl font-bold text-green-400">₹{hotel.price}/night</p>
+                    <p className="text-xl font-bold text-green-600 dark:text-green-400">₹{hotel.price}/night</p>
                   </div>
                   <div className="flex gap-2">
                     <PrimaryButton onClick={() => handlePayment(hotel.price, `Hotel Stay at ${hotel.name}`)} className="flex-1">
@@ -255,7 +255,7 @@ export default function TravelPage() {
                     </PrimaryButton>
                     <button
                       onClick={() => window.open('https://www.google.com/travel/hotels', '_blank')}
-                      className="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition-all text-xs"
+                      className="px-3 py-2 rounded-xl bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 transition-all text-xs text-slate-900 dark:text-white"
                     >
                       Compare
                     </button>
@@ -268,9 +268,9 @@ export default function TravelPage() {
       )}
 
       <GlassCard>
-        <h2 className="text-2xl font-bold mb-4">💳 Travel Payment</h2>
-        <p className="text-gray-300 mb-4">Secure Payment Gateway Integrated via Razorpay</p>
-        <div className="bg-white/5 p-4 rounded-xl mb-4">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">💳 Travel Payment</h2>
+        <p className="text-slate-600 dark:text-gray-300 mb-4">Secure Payment Gateway Integrated via Razorpay</p>
+        <div className="bg-black/5 dark:bg-white/5 p-4 rounded-xl mb-4 text-slate-700 dark:text-gray-300">
           <p className="text-sm">Trusted by millions of students.</p>
         </div>
       </GlassCard>

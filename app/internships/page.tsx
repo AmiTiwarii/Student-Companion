@@ -60,8 +60,8 @@ export default function InternshipsPage() {
             key={cat}
             onClick={() => setFilter(cat)}
             className={`px-6 py-3 rounded-xl transition-all font-medium ${filter === cat
-                ? 'bg-gradient-to-r from-neon-purple to-neon-pink text-white shadow-lg shadow-neon-purple/30'
-                : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+              ? 'bg-gradient-to-r from-neon-purple to-neon-pink text-white shadow-lg shadow-neon-purple/30'
+              : 'bg-white/40 dark:bg-white/5 text-slate-600 dark:text-gray-400 hover:bg-white/60 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white'
               }`}
           >
             {cat}
@@ -71,7 +71,7 @@ export default function InternshipsPage() {
 
       {isSearching ? (
         <div className="text-center py-20">
-          <div className="text-2xl text-gray-400 animate-pulse">Searching best opportunities...</div>
+          <div className="text-2xl text-slate-400 dark:text-gray-400 animate-pulse">Searching best opportunities...</div>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -79,24 +79,24 @@ export default function InternshipsPage() {
             <GlassCard key={job.job_id} className="h-full flex flex-col">
               <div className="flex justify-between items-start mb-4">
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2 line-clamp-1" title={job.job_title}>{job.job_title}</h3>
+                  <h3 className="text-2xl font-bold mb-2 line-clamp-1 text-slate-900 dark:text-white" title={job.job_title}>{job.job_title}</h3>
                   <div className="flex items-center gap-2">
                     {job.employer_logo ? (
                       <img src={job.employer_logo} alt={job.employer_name} className="w-6 h-6 object-contain rounded" />
                     ) : (
                       <span className="text-2xl">🏢</span>
                     )}
-                    <p className="text-neon-cyan font-medium">{job.employer_name}</p>
+                    <p className="text-indigo-600 dark:text-neon-cyan font-medium">{job.employer_name}</p>
                   </div>
                 </div>
                 {job.job_is_remote && (
-                  <span className="px-3 py-1 text-xs font-bold rounded-full bg-green-500/20 text-green-400 border border-green-500/30">
+                  <span className="px-3 py-1 text-xs font-bold rounded-full bg-green-500/10 dark:bg-green-500/20 text-green-600 dark:text-green-400 border border-green-500/20 dark:border-green-500/30">
                     REMOTE
                   </span>
                 )}
               </div>
 
-              <div className="space-y-3 text-gray-300 mb-6 flex-1">
+              <div className="space-y-3 text-slate-600 dark:text-gray-300 mb-6 flex-1">
                 <div className="flex items-center gap-2">
                   <span>📍</span>
                   <span className="truncate">{job.job_city || 'Remote'}, {job.job_country}</span>
@@ -107,14 +107,14 @@ export default function InternshipsPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span>📅</span>
-                  <span className="text-xs text-gray-500">Posted {new Date(job.job_posted_at_datetime_utc).toLocaleDateString()}</span>
+                  <span className="text-xs text-slate-500 dark:text-gray-500">Posted {new Date(job.job_posted_at_datetime_utc).toLocaleDateString()}</span>
                 </div>
-                <p className="line-clamp-3 text-sm text-gray-400 mt-4 leading-relaxed">
+                <p className="line-clamp-3 text-sm text-slate-500 dark:text-gray-400 mt-4 leading-relaxed">
                   {job.job_description}
                 </p>
               </div>
 
-              <div className="mt-auto pt-6 border-t border-white/10">
+              <div className="mt-auto pt-6 border-t border-black/5 dark:border-white/10">
                 <PrimaryButton
                   onClick={() => window.open(job.job_apply_link, '_blank')}
                   className="w-full justify-center text-lg"

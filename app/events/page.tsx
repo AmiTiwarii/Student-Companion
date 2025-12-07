@@ -103,47 +103,47 @@ export default function EventsPage() {
 
       {showForm && isAdmin && (
         <GlassCard className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Create New Event</h2>
+          <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Create New Event</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Title</label>
+              <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Title</label>
               <input
                 type="text"
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 required
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Description</label>
+              <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Description</label>
               <textarea
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 required
                 rows={3}
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Location</label>
+                <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Location</label>
                 <input
                   type="text"
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                  className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Date & Time</label>
+                <label className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-300">Date & Time</label>
                 <input
                   type="datetime-local"
                   value={formData.dateTime}
                   onChange={(e) => setFormData({ ...formData, dateTime: e.target.value })}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon-purple focus:outline-none"
+                  className="w-full px-4 py-3 rounded-xl bg-white/40 dark:bg-white/10 border border-black/10 dark:border-white/20 text-slate-900 dark:text-white focus:border-neon-purple focus:outline-none"
                 />
               </div>
             </div>
@@ -152,9 +152,9 @@ export default function EventsPage() {
                 type="checkbox"
                 checked={formData.isCollegeEvent}
                 onChange={(e) => setFormData({ ...formData, isCollegeEvent: e.target.checked })}
-                className="mr-2"
+                className="mr-2 rounded border-gray-300 text-neon-purple focus:ring-neon-purple"
               />
-              <label className="text-sm">College Event</label>
+              <label className="text-sm text-slate-700 dark:text-gray-300">College Event</label>
             </div>
             <PrimaryButton type="submit" className="w-full">
               Create Event
@@ -165,29 +165,29 @@ export default function EventsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {events.length === 0 ? (
-          <div className="col-span-2 text-center text-gray-400 py-12">
+          <div className="col-span-2 text-center text-slate-500 dark:text-gray-400 py-12">
             No events yet. {isAdmin && 'Create one to get started!'}
           </div>
         ) : (
           events.map((event) => (
             <GlassCard key={event.id}>
               <div className="flex justify-between items-start mb-3">
-                <h3 className="text-xl font-semibold">{event.title}</h3>
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{event.title}</h3>
                 {event.isCollegeEvent && (
-                  <span className="px-2 py-1 text-xs rounded-lg bg-neon-purple/30 text-neon-purple">
+                  <span className="px-2 py-1 text-xs rounded-lg bg-neon-purple/10 dark:bg-neon-purple/30 text-purple-700 dark:text-neon-purple font-medium">
                     College
                   </span>
                 )}
               </div>
-              <p className="text-gray-300 text-sm mb-3">{event.description}</p>
-              <div className="space-y-1 text-sm text-gray-400">
+              <p className="text-slate-600 dark:text-gray-300 text-sm mb-3">{event.description}</p>
+              <div className="space-y-1 text-sm text-slate-500 dark:text-gray-400">
                 <p>📍 {event.location}</p>
                 <p>🕒 {new Date(event.dateTime).toLocaleString()}</p>
               </div>
               {isAdmin && (
                 <button
                   onClick={() => handleDelete(event.id)}
-                  className="mt-4 text-red-400 hover:text-red-300 text-sm"
+                  className="mt-4 text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 text-sm font-medium transition-colors"
                 >
                   Delete
                 </button>

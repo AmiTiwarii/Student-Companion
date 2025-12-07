@@ -64,10 +64,10 @@ export default function DashboardPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="mb-12">
-        <h1 className="text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+        <h1 className="text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-purple-600 to-slate-900 dark:from-white dark:via-gray-200 dark:to-gray-400">
           Hey, {userName} 👋
         </h1>
-        <p className="text-xl text-gray-400">Welcome back to your Student Companion</p>
+        <p className="text-xl text-slate-600 dark:text-gray-400">Welcome back to your Student Companion</p>
       </div>
 
       {lastMood && (
@@ -75,16 +75,16 @@ export default function DashboardPage() {
           <div className="flex items-center space-x-6">
             <span className="text-6xl drop-shadow-lg">{getMoodEmoji(lastMood.moodLabel)}</span>
             <div>
-              <h3 className="text-2xl font-bold mb-1">You seem {lastMood.moodLabel} today</h3>
-              <p className="text-gray-400 text-sm">Last checked: {new Date(lastMood.timestamp).toLocaleDateString()}</p>
+              <h3 className="text-2xl font-bold mb-1 text-slate-900 dark:text-white">You seem {lastMood.moodLabel} today</h3>
+              <p className="text-slate-500 dark:text-gray-400 text-sm">Last checked: {new Date(lastMood.timestamp).toLocaleDateString()}</p>
             </div>
           </div>
         </GlassCard>
       )}
 
-      <GlassCard className="mb-12 bg-gradient-to-tr from-white/5 to-transparent relative overflow-hidden">
+      <GlassCard className="mb-12 bg-gradient-to-tr from-white/40 to-white/10 dark:from-white/5 dark:to-transparent relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-neon-purple/20 blur-[100px] rounded-full pointer-events-none" />
-        <p className="text-2xl italic text-center font-light leading-relaxed text-gray-200">
+        <p className="text-2xl italic text-center font-light leading-relaxed text-slate-700 dark:text-gray-200">
           "{quote}"
         </p>
       </GlassCard>
@@ -93,48 +93,48 @@ export default function DashboardPage() {
         <GlassCard onClick={() => router.push('/companion?tab=questionnaire')} className="group">
           <div className="text-center py-4">
             <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">🧠</div>
-            <h3 className="text-2xl font-bold mb-2 text-white">Take Mood Check</h3>
-            <p className="text-gray-400">Track your mental wellness</p>
+            <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">Take Mood Check</h3>
+            <p className="text-slate-600 dark:text-gray-400">Track your mental wellness</p>
           </div>
         </GlassCard>
 
         <GlassCard onClick={() => router.push('/companion?tab=chatbot')} className="group">
           <div className="text-center py-4">
             <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">💬</div>
-            <h3 className="text-2xl font-bold mb-2 text-white">Open Chatbot</h3>
-            <p className="text-gray-400">Get instant help & guidance</p>
+            <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">Open Chatbot</h3>
+            <p className="text-slate-600 dark:text-gray-400">Get instant help & guidance</p>
           </div>
         </GlassCard>
 
         <GlassCard onClick={() => router.push('/travel')} className="group">
           <div className="text-center py-4">
             <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">✈️</div>
-            <h3 className="text-2xl font-bold mb-2 text-white">Plan Travel</h3>
-            <p className="text-gray-400">Book flights & hotels</p>
+            <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">Plan Travel</h3>
+            <p className="text-slate-600 dark:text-gray-400">Book flights & hotels</p>
           </div>
         </GlassCard>
 
         <GlassCard onClick={() => router.push('/academics')} className="group">
           <div className="text-center py-4">
             <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">📚</div>
-            <h3 className="text-2xl font-bold mb-2 text-white">Check Marks</h3>
-            <p className="text-gray-400">View your academic progress</p>
+            <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">Check Marks</h3>
+            <p className="text-slate-600 dark:text-gray-400">View your academic progress</p>
           </div>
         </GlassCard>
 
         <GlassCard onClick={() => router.push('/internships')} className="group">
           <div className="text-center py-4">
             <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">💼</div>
-            <h3 className="text-2xl font-bold mb-2 text-white">Find Internships</h3>
-            <p className="text-gray-400">Explore opportunities</p>
+            <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">Find Internships</h3>
+            <p className="text-slate-600 dark:text-gray-400">Explore opportunities</p>
           </div>
         </GlassCard>
 
         <GlassCard onClick={() => router.push('/events')} className="group">
           <div className="text-center py-4">
             <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">📅</div>
-            <h3 className="text-2xl font-bold mb-2 text-white">Browse Events</h3>
-            <p className="text-gray-400">Discover campus events</p>
+            <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">Browse Events</h3>
+            <p className="text-slate-600 dark:text-gray-400">Discover campus events</p>
           </div>
         </GlassCard>
       </div>

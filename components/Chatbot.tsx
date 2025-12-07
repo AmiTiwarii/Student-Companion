@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { callLLM } from '@/lib/llm';
 import { searchYouTube, getCareerQuery, getSkillQuery, getExamQuery, YouTubeVideo } from '@/lib/youtube';
 import { searchNearbyPlaces, detectPlaceType, Place } from '@/lib/places';
@@ -21,27 +21,8 @@ export default function Chatbot({ initialPrompt }: { initialPrompt?: string }) {
   const [input, setInput] = useState(initialPrompt || '');
   const [loading, setLoading] = useState(false);
 
-  const detectIntent = (query: string) => {
-    const lower = query.toLowerCase();
-
-    if (lower.includes('nearby') || lower.includes('near me')) {
-      return 'places';
-    }
-
-    if (lower.includes('become') || lower.includes('career')) {
-      return 'career';
-    }
-
-    if (lower.includes('skill') || lower.includes('learn')) {
-      return 'skill';
-    }
-
-    if (lower.includes('jee') || lower.includes('gate') || lower.includes('cat') || lower.includes('exam')) {
-      return 'exam';
-    }
-
-    return 'general';
-  };
+  // Location persistence
+  const userLocation = useRef<{ lat: number; lng: number } | null>(null);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -52,43 +33,58 @@ export default function Chatbot({ initialPrompt }: { initialPrompt?: string }) {
     setLoading(true);
 
     try {
-      const intent = detectIntent(input);
+      const lowerInput = input.toLowerCase();
       let response = '';
       let videos: YouTubeVideo[] = [];
       let places: Place[] = [];
 
-      if (intent === 'places') {
-        const placeType = detectPlaceType(input);
-        if (placeType) {
-          places = await searchNearbyPlaces(placeType);
-          response = `Found ${places.length} ${placeType}s near you:`;
-        } else {
-          response = await callLLM(input);
+      // 1. Check for ID/Keywords for specialized actions
+      const isVideoRequest = lowerInput.includes('video') || lowerInput.includes('youtube') || lowerInput.includes('watch');
+      const isPlaceRequest = lowerInput.includes('near') || lowerInput.includes('place') || lowerInput.includes('restaurant') || lowerInput.includes('cafe') || lowerInput.includes('library');
+
+      // 2. Handle Places
+      if (isPlaceRequest) {
+        const placeType = detectPlaceType(input) || 'point_of_interest';
+
+        // Get Location if not already known
+        if (!userLocation.current) {
+          try {
+            const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+              navigator.geolocation.getCurrentPosition(resolve, reject);
+            });
+            userLocation.current = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+          } catch (error) {
+            console.log("Geolocation denied or error");
+          }
         }
-      } else if (intent === 'career') {
-        const careerMatch = input.match(/become (?:a |an )?(\w+)/i);
-        if (careerMatch) {
-          const career = careerMatch[1];
-          videos = await searchYouTube(getCareerQuery(career));
-          response = `Here are some great resources to become a ${career}:`;
-        } else {
-          response = await callLLM(input);
+
+        if (userLocation.current) {
+          places = await searchNearbyPlaces(placeType, userLocation.current.lat, userLocation.current.lng);
         }
-      } else if (intent === 'skill') {
-        const skillMatch = input.match(/(?:learn|improve) (?:my )?(\w+)/i);
-        if (skillMatch) {
-          const skill = skillMatch[1];
-          videos = await searchYouTube(getSkillQuery(skill));
-          response = `Here are tutorials to improve your ${skill} skills:`;
-        } else {
-          response = await callLLM(input);
-        }
-      } else if (intent === 'exam') {
-        videos = await searchYouTube(input);
-        response = 'Here are some helpful exam preparation resources:';
-      } else {
-        response = await callLLM(input);
       }
+
+      // 3. Handle Videos
+      if (isVideoRequest) {
+        // Extract a query for video or just use the input
+        // Simple extraction: remove "video", "youtube" words
+        const videoQuery = input.replace(/video|youtube|watch/gi, '').trim();
+        videos = await searchYouTube(videoQuery || input);
+      }
+
+      // 4. Always get LLM Text Response
+      // We can append context about what we found
+      let prompt = input;
+      if (places.length > 0) {
+        prompt += `\n[System Note: I found ${places.length} places nearby. Mention them briefly.]`;
+      }
+      if (videos.length > 0) {
+        prompt += `\n[System Note: I found ${videos.length} videos. Mention them briefly.]`;
+      }
+
+      response = await callLLM(prompt);
 
       const assistantMessage: Message = {
         role: 'assistant',
